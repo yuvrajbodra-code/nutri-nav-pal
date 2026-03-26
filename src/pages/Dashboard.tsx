@@ -3,6 +3,7 @@ import { Activity, Droplets, Flame, Target, TrendingUp, Apple } from "lucide-rea
 import { StatCard } from "@/components/StatCard";
 import { NutrientProgress } from "@/components/NutrientProgress";
 import { MealCard } from "@/components/MealCard";
+import { NutrientWarnings } from "@/components/NutrientWarnings";
 import { useUserData } from "@/contexts/UserDataContext";
 import { useNavigate } from "react-router-dom";
 import {
@@ -130,11 +131,22 @@ export default function Dashboard() {
         </motion.div>
       </div>
 
-      {/* Nutrient tracking */}
+      {/* Warnings & Notifications */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25 }}
+        className="rounded-xl border border-border bg-card p-5"
+      >
+        <h3 className="font-heading font-semibold text-card-foreground mb-4">⚠️ Health Alerts & Notifications</h3>
+        <NutrientWarnings />
+      </motion.div>
+
+      {/* Nutrient tracking */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
         className="rounded-xl border border-border bg-card p-5"
       >
         <h3 className="font-heading font-semibold text-card-foreground mb-4">Daily Nutrient Progress</h3>

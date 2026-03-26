@@ -7,6 +7,8 @@ import {
   Apple,
   Sun,
   Moon,
+  CalendarDays,
+  MessageCircle,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
@@ -27,8 +29,10 @@ import {
 const mainNav = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Meal Plans", url: "/meal-plans", icon: UtensilsCrossed },
+  { title: "Diet Plans", url: "/diet-plans", icon: CalendarDays },
   { title: "Health Profile", url: "/health-profile", icon: HeartPulse },
   { title: "Nutrient Tracking", url: "/nutrient-tracking", icon: BarChart3 },
+  { title: "AI Chat", url: "/chat", icon: MessageCircle },
 ];
 
 const secondaryNav = [

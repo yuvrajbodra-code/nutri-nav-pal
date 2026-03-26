@@ -153,7 +153,7 @@ export default function HealthProfile() {
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="height">Height</Label>
-              <Input id="height" value={profile.height} onChange={(e) => updateProfile({ height: e.target.value })} placeholder="e.g. 5'6\" or 168 cm" />
+              <Input id="height" value={profile.height} onChange={(e) => updateProfile({ height: e.target.value })} placeholder={'e.g. 5\'6" or 168 cm'} />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="weight">Weight</Label>

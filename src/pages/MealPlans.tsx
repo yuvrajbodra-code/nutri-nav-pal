@@ -3,16 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MealCard } from "@/components/MealCard";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, Filter, Sparkles } from "lucide-react";
-import { Input } from "@/components/ui/input";
-
-const conditions = ["All", "Diabetes", "CKD", "Hypertension", "Obesity"];
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MealCard } from "@/components/MealCard";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Search, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { allMeals } from "@/data/meals";

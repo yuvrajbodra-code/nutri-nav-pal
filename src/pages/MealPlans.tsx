@@ -8,26 +8,24 @@ import { Input } from "@/components/ui/input";
 
 const conditions = ["All", "Diabetes", "CKD", "Hypertension", "Obesity"];
 
-const meals = [
-  { name: "Greek Yogurt Parfait", type: "breakfast" as const, calories: 290, protein: 18, carbs: 38, fat: 8, prepTime: "5 min", tags: ["Low GI", "Probiotic", "Diabetic Friendly"], condition: "Diabetes" },
-  { name: "Egg White Veggie Omelette", type: "breakfast" as const, calories: 220, protein: 24, carbs: 8, fat: 10, prepTime: "12 min", tags: ["High Protein", "Low Carb", "Heart Healthy"], condition: "Hypertension" },
-  { name: "Lentil & Spinach Soup", type: "lunch" as const, calories: 340, protein: 22, carbs: 42, fat: 6, prepTime: "30 min", tags: ["High Fiber", "Low Sodium", "CKD Safe"], condition: "CKD" },
-  { name: "Turkey Lettuce Wraps", type: "lunch" as const, calories: 310, protein: 32, carbs: 12, fat: 14, prepTime: "15 min", tags: ["Low Carb", "High Protein", "Weight Loss"], condition: "Obesity" },
-  { name: "Herb-Crusted Cod with Asparagus", type: "dinner" as const, calories: 380, protein: 36, carbs: 14, fat: 18, prepTime: "25 min", tags: ["Omega-3", "Low Sodium", "CKD Safe"], condition: "CKD" },
-  { name: "Chicken Stir-Fry with Brown Rice", type: "dinner" as const, calories: 450, protein: 38, carbs: 48, fat: 10, prepTime: "20 min", tags: ["Balanced", "Low GI", "Diabetic Friendly"], condition: "Diabetes" },
-  { name: "Zucchini Noodles with Marinara", type: "dinner" as const, calories: 280, protein: 12, carbs: 22, fat: 16, prepTime: "18 min", tags: ["Low Calorie", "Low Carb", "Weight Loss"], condition: "Obesity" },
-  { name: "DASH Diet Salmon Bowl", type: "lunch" as const, calories: 420, protein: 34, carbs: 38, fat: 14, prepTime: "22 min", tags: ["DASH", "Heart Healthy", "Anti-Inflammatory"], condition: "Hypertension" },
-  { name: "Almond Butter Apple Slices", type: "snack" as const, calories: 180, protein: 6, carbs: 22, fat: 10, prepTime: "3 min", tags: ["Low GI", "Fiber Rich", "Diabetic Friendly"], condition: "Diabetes" },
-  { name: "Cucumber Hummus Bites", type: "snack" as const, calories: 120, protein: 4, carbs: 14, fat: 6, prepTime: "5 min", tags: ["Low Sodium", "Low Calorie", "Heart Healthy"], condition: "Hypertension" },
-];
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { MealCard } from "@/components/MealCard";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Search, Sparkles } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { allMeals } from "@/data/meals";
+
+const conditions = ["All", "Diabetes", "CKD", "Hypertension", "Obesity"];
 
 export default function MealPlans() {
   const [search, setSearch] = useState("");
   const [activeCondition, setActiveCondition] = useState("All");
 
-  const filtered = meals.filter((m) => {
+  const filtered = allMeals.filter((m) => {
     const matchSearch = m.name.toLowerCase().includes(search.toLowerCase());
-    const matchCondition = activeCondition === "All" || m.condition === activeCondition;
+    const matchCondition = activeCondition === "All" || m.condition === activeCondition || m.condition === "All";
     return matchSearch && matchCondition;
   });
 

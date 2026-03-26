@@ -8,8 +8,10 @@ import { UserDataProvider } from "@/contexts/UserDataContext";
 import { AppLayout } from "@/components/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import MealPlans from "./pages/MealPlans";
+import DietPlans from "./pages/DietPlans";
 import HealthProfile from "./pages/HealthProfile";
 import NutrientTracking from "./pages/NutrientTracking";
+import ChatBot from "./pages/ChatBot";
 import SettingsPage from "./pages/SettingsPage";
 import NotFound from "./pages/NotFound";
 
@@ -27,8 +29,10 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/meal-plans" element={<MealPlans />} />
+                <Route path="/diet-plans" element={<DietPlans />} />
                 <Route path="/health-profile" element={<HealthProfile />} />
                 <Route path="/nutrient-tracking" element={<NutrientTracking />} />
+                <Route path="/chat" element={<ChatBot />} />
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

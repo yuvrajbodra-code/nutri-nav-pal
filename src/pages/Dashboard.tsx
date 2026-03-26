@@ -3,6 +3,8 @@ import { Activity, Droplets, Flame, Target, TrendingUp, Apple } from "lucide-rea
 import { StatCard } from "@/components/StatCard";
 import { NutrientProgress } from "@/components/NutrientProgress";
 import { MealCard } from "@/components/MealCard";
+import { useUserData } from "@/contexts/UserDataContext";
+import { useNavigate } from "react-router-dom";
 import {
   PieChart, Pie, Cell, ResponsiveContainer,
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
@@ -31,20 +33,29 @@ const todayMeals = [
 ];
 
 export default function Dashboard() {
+  const { profile, isProfileComplete } = useUserData();
+  const navigate = useNavigate();
+  const firstName = profile.name ? profile.name.split(" ")[0] : "there";
+
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <h1 className="text-2xl md:text-3xl font-bold font-heading text-foreground">
-          Good Morning, Sarah 👋
+          Good Morning, {firstName} 👋
         </h1>
-        <p className="text-muted-foreground mt-1">Here's your personalized nutrition overview for today.</p>
+        <p className="text-muted-foreground mt-1">
+          {isProfileComplete
+            ? "Here's your personalized nutrition overview for today."
+            : <span>Complete your <button onClick={() => navigate("/health-profile")} className="text-primary underline underline-offset-2">health profile</button> to get personalized recommendations.</span>
+          }
+        </p>
       </motion.div>
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard title="Calories Today" value="1,380" subtitle="of 2,000 kcal" icon={Flame} variant="primary" trend={{ value: -5, label: "vs yesterday" }} />
-        <StatCard title="Water Intake" value="6 / 8" subtitle="glasses" icon={Droplets} variant="accent" />
-        <StatCard title="Protein Goal" value="94g" subtitle="of 120g target" icon={Target} variant="success" trend={{ value: 12, label: "this week" }} />
+        <StatCard title="Calories Today" value="1,380" subtitle={`of ${profile.calorieTarget.toLocaleString()} kcal`} icon={Flame} variant="primary" trend={{ value: -5, label: "vs yesterday" }} />
+        <StatCard title="Water Intake" value={`6 / ${profile.waterGoal}`} subtitle="glasses" icon={Droplets} variant="accent" />
+        <StatCard title="Protein Goal" value="94g" subtitle={`of ${profile.proteinTarget}g target`} icon={Target} variant="success" trend={{ value: 12, label: "this week" }} />
         <StatCard title="Health Score" value="87" subtitle="out of 100" icon={Activity} variant="warning" trend={{ value: 3, label: "improvement" }} />
       </div>
 
